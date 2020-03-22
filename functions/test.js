@@ -12,6 +12,7 @@ exports.handler = (event, context, callback) => {
   }
 
   const params = querystring.parse(event.body);
+  console.log(event, params);
   if (!params.title) {
     callback(null, { statusCode: 400, body: "The title must be set" });
   }
