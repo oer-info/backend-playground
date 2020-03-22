@@ -15,6 +15,7 @@ exports.handler = (event, context, callback) => {
   if (!params.title) {
     return { statusCode: 400, body: "The title must be set" };
   }
+  console.log(params.title);
 
   const client = algoliasearch("8U7CL41ANW", process.env.ALGOLIA_ADMIN_KEY);
   const index = client.initIndex("offers");
