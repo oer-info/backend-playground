@@ -5,6 +5,16 @@ exports.handler = (event, context, callback) => {
   console.log(identity, user);
 
   const algoliasearch = require("algoliasearch");
+  const querystring = require("querystring");
+
+  if (event.httpMethod !== "POST") {
+    return { statusCode: 405, body: "Method Not Allowed" };
+  }
+
+  const params = querystring.parse(event.body);
+  if (!params.title) {
+    return { statusCode: 400, body: "The title must be set" };
+  }
 
   const client = algoliasearch("8U7CL41ANW", process.env.ALGOLIA_ADMIN_KEY);
   const index = client.initIndex("offers");
@@ -12,7 +22,7 @@ exports.handler = (event, context, callback) => {
   const objects = [
     {
       objectID: 1,
-      title: "Added by netlify function"
+      title: params.title
     }
   ];
 
