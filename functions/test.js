@@ -8,12 +8,12 @@ exports.handler = (event, context, callback) => {
   const querystring = require("querystring");
 
   if (event.httpMethod !== "POST") {
-    return { statusCode: 405, body: "Method Not Allowed" };
+    return callback(null, { statusCode: 405, body: "Method Not Allowed" });
   }
 
   const params = querystring.parse(event.body);
   if (!params.title) {
-    return { statusCode: 400, body: "The title must be set" };
+    callback(null, { statusCode: 400, body: "The title must be set" });
   }
   console.log(params.title);
 
