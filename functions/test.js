@@ -11,8 +11,8 @@ exports.handler = (event, context, callback) => {
     return callback(null, { statusCode: 405, body: "Method Not Allowed" });
   }
 
-  const params = querystring.parse(event.body);
-  console.log(event, params);
+  const params = JSON.parse(event.body);
+  console.log(params);
   if (!params.title) {
     callback(null, { statusCode: 400, body: "The title must be set" });
   }
