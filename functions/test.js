@@ -3,10 +3,6 @@ exports.handler = (event, context, callback) => {
   const { identity, user } = context.clientContext;
   console.log("Check auth");
   console.log(identity, user);
-  callback(null, {
-    statusCode: 200,
-    body: "No worries, all is working fine!"
-  });
 
   const algoliasearch = require("algoliasearch");
 
@@ -28,4 +24,9 @@ exports.handler = (event, context, callback) => {
     .catch(err => {
       console.log(err);
     });
+
+  callback(null, {
+    statusCode: 200,
+    body: "No worries, all is working fine!"
+  });
 };
